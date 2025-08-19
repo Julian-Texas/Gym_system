@@ -28,11 +28,13 @@ typedef struct
 	char name[30];	//姓名
 	gender gd;	//性别
 	char phone[12];	//手机号
-	
-
-
-
-
+	type tp;	//会员卡类型
+	time_t regist;	//注册时间
+	time_t expire;	//到期时间
+	int times_card;	//剩余次数
+	int state;	//删除状态，0表示为删除，1表示已删除
 } mem;
+
+void mem_reg(void);
 
 #endif

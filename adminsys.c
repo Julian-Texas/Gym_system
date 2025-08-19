@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "adminsys.h"
 #include "functions.h"
+#include "mem.h"
 
 
 void user_reg(void)
@@ -70,7 +71,7 @@ void adminsys(void)
 			case 1:
 				{
 					// 开卡
-					user_reg();
+					void mem_reg;
 				}
 				break;
 
