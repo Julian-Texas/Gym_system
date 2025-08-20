@@ -50,10 +50,10 @@ void mem_reg(void)
 			reg.expire = reg.regist + 365 * 24 * 3600;
 			break;
 		case lifetime:
-			reg.expire = reg.regist + 200 * 365 * 24 * 3600;
+			reg.expire = reg.regist + 200L * 365 * 24 * 3600;
 			break;
 		default:
-			perror("\n到期时间错误,请重新录入")
+			perror("\n到期时间错误,请重新录入");
 			return;
 	}
 
@@ -64,6 +64,6 @@ void mem_reg(void)
 		scanf("%d", &reg.times_card);
 	}
 	//删除状态,暂时未完成
-	state = 0;
+	reg.state = 0;
 }
 

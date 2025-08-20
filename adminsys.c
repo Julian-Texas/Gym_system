@@ -43,7 +43,6 @@ void adminsys(void)
 	printf("4. 查询会员信息\n");
 	printf("0. 退出系统\n");
 
-	char c;
 
 	while(1)
 	{
@@ -71,7 +70,7 @@ void adminsys(void)
 			case 1:
 				{
 					// 开卡
-					void mem_reg;
+					mem_reg();
 				}
 				break;
 

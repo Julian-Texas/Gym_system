@@ -1,6 +1,8 @@
 #ifndef MEM_H
 #define MEM_H
 
+#include <time.h>
+
 //声明性别枚举类型
 typedef enum
 {
