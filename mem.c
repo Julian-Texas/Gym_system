@@ -11,15 +11,15 @@ void mem_reg(void)
 	printf("您现在正在添加会员，请输入会员信息：\n");
 	printf("卡号:");
 	scanf("%10s",reg.num);
-	printf("\n姓名:");
+	printf("姓名:");
 	scanf("%30s",reg.name);
-	printf("\n性别(0-女,1-男,2-其他):");
+	printf("性别(0-女,1-男,2-其他):");
 	int temp1;
 	scanf("%d",&temp1);
 	reg.gd = (gender)temp1;
-	printf("\n手机号:");
+	printf("手机号:");
 	scanf("%11s",reg.phone);
-	printf("\n会员卡类型(1-年卡,2-季卡,3-月卡,4-周卡,5-次卡,6-终身卡):");
+	printf("会员卡类型(1-年卡,2-季卡,3-月卡,4-周卡,5-次卡,6-终身卡):");
 	int temp2;
 	scanf("%d",&temp2);
 	reg.tp = (type)temp2;
@@ -60,10 +60,27 @@ void mem_reg(void)
 	//剩余次数
 	if(reg.tp == times)
 	{
-		printf("\n剩余次数:");
+		printf("剩余次数:");
 		scanf("%d", &reg.times_card);
 	}
-	//删除状态,暂时未完成
+	else
+		reg.times_card = -1;
+
+	//删除状态
 	reg.state = 0;
+
+	FILE* fp = fopen(mem_information,"ab");
+	if(fp == NULL)
+	{
+		perror("注册失败");
+		return;
+	}
+	fwrite(&reg,sizeof(reg),1,fp);
+	fclose(fp);
+
+	printf("\n会员注册成功!!!");
 }
 
+
+//查找会员
+void mem_select(void)

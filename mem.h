@@ -3,6 +3,9 @@
 
 #include <time.h>
 
+//声明存储文件
+#define mem_information "./member_information.dat"
+
 //声明性别枚举类型
 typedef enum
 {
