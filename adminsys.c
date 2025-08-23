@@ -3,6 +3,7 @@
 #include "adminsys.h"
 #include "functions.h"
 #include "mem.h"
+#include "select.h"
 
 
 void user_reg(void)
@@ -31,21 +32,19 @@ void user_sea(void)
 
 void adminsys(void)
 {
-
-	// CUI 菜单式界面
-	int op;
-
-	printf("欢迎使用本系统！\n\n");
-	printf("操作说明：\n");
-	printf("1. 开卡\n");
-	printf("2. 会员注销\n");
-	printf("3. 修改会员信息\n");
-	printf("4. 查询会员信息\n");
-	printf("0. 退出系统\n");
-
-
 	while(1)
 	{
+		// CUI 菜单式界面
+		int op;
+
+		printf("欢迎使用本系统！\n\n");
+		printf("操作说明：\n");
+		printf("1. 开卡\n");
+		printf("2. 会员注销\n");
+		printf("3. 修改会员信息\n");
+		printf("4. 查询会员信息\n");
+		printf("0. 退出系统\n");
+		
 		printf("\n> ");
 
 		if(scanf("%d", &op) != 1)
@@ -91,7 +90,9 @@ void adminsys(void)
 			case 4:
 				{
 					// 查询会员信息
-					user_sea();
+					waitclear(0);
+					mem_key();
+					waitclear(0);
 				}
 				break;
 

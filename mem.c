@@ -82,5 +82,3 @@ void mem_reg(void)
 }
 
 
-//查找会员
-void mem_select(void)

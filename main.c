@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "adminsys.h"
 #include "functions.h"
+#include "select.h"
 
 void mem_query()
 {
@@ -44,7 +45,12 @@ int main()
 		//会员查询信息
 		else if(strlen(input) == 10 && if_digits(input))
 		{
-			mem_query();
+			mem member;
+			if(self_service_search(input, &member))
+			{
+				mem_display(&member);
+				waitclear(5);
+			}
 		}
 
 		else
