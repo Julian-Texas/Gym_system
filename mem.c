@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "mem.h"
 #include <time.h>
+#include "mem.h"
 
 
 //新增会员
@@ -12,7 +12,7 @@ void mem_reg(void)
 	printf("卡号:");
 	scanf("%10s",reg.num);
 	printf("姓名:");
-	scanf("%30s",reg.name);
+	scanf("%29s",reg.name);
 	printf("性别(0-女,1-男,2-其他):");
 	int temp1;
 	scanf("%d",&temp1);

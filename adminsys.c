@@ -4,30 +4,7 @@
 #include "functions.h"
 #include "mem.h"
 #include "select.h"
-
-
-void user_reg(void)
-{
-
-}
-
-
-void user_del(void)
-{
-
-}
-
-
-void user_mod(void)
-{
-
-}
-
-
-void user_sea(void)
-{
-
-}
+#include "update.h"
 
 
 void adminsys(void)
@@ -70,20 +47,21 @@ void adminsys(void)
 				{
 					// 开卡
 					mem_reg();
+					waitclear(1);
 				}
 				break;
 
 			case 2:
 				{
 					// 会员注销
-					user_del();
+					mem_delete();
 				}
 				break;
 
 			case 3:
 				{
 					// 修改会员信息
-					user_mod();
+					mem_update();
 				}
 				break;
 
@@ -100,6 +78,7 @@ void adminsys(void)
 				{
 					// 输入错误
 					printf("\n输入错误，请重新输入！\n");
+					waitclear(1);
 				}
 		}
 	}

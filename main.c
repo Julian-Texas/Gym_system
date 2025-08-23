@@ -5,6 +5,7 @@
 #include "adminsys.h"
 #include "functions.h"
 #include "select.h"
+#include "mem.h"
 
 void mem_query()
 {
