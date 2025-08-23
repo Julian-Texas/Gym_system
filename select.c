@@ -5,6 +5,8 @@
 #include "mem.h"
 #include "functions.h"
 
+//通过姓名和手机号搜索时最多的显示个数
+#define SEL_MAX 10
 
 //显示会员信息
 void mem_display(const mem* member)
@@ -130,19 +132,19 @@ void mem_key(void)
 
 		case 1:
 			{
-				
+				select_by_num();
 			}
 			break;
 
 		case 2:
 			{
-				
+				select_by_name();
 			}
 			break;
 
 		case 3:
 			{
-				
+				select_by_phone();
 			}
 			break;
 		
@@ -163,7 +165,118 @@ void select_by_num(void)
 	char num[11];
 	printf("请输入卡号:");
 	scanf("%10s", num);
-	while(getchar != '\n');
+	while(getchar() != '\n');
 	
 	FILE* fp = fopen(mem_information, "rb");
+	if (fp == NULL)
+	{
+		perror("用户数据文件打开失败!");
+		return;
+	}
+
+	mem result;
+	while(fread(&result, sizeof(mem), 1, fp))
+	{
+		if(result.state == 0 && strcmp(result.num, num) == 0)
+			break;
+	}
+
+	if(feof(fp))
+	{
+		printf("未找到该用户...");
+	}
+	else
+		mem_display(&result);
+
+	fclose(fp);
+}
+
+
+//通过姓名查询
+void select_by_name(void)
+{
+	char name[30];
+	mem results[SEL_MAX];
+	int count = 0;
+
+	printf("请输入姓名:");
+	scanf("%29s", name);
+	while(getchar() != '\n');
+
+	FILE* fp = fopen(mem_information, "rb");
+	if (fp == NULL)
+	{
+		perror("用户数据文件打开失败!");
+		return;
+	}
+
+	mem current;
+
+	while(fread(&current, sizeof(mem), 1, fp) && count < SEL_MAX)
+	{
+		if(current.state == 0 && strcmp(current.name, name) == 0)
+		{
+			results[count] = current;
+			count++;
+		}
+
+	}
+
+	if (count > 0)
+	{
+		printf("找到 %d 个符合要求的会员,他们的信息如下:\n", count);
+		for(int i = 0; i < count; i++)
+		{
+			mem_display(&results[i]);
+		}
+	}
+	else
+		printf("未找到该用户...");
+
+	fclose(fp);
+
+}
+
+
+//通过手机号查询
+void select_by_phone(void)
+{
+	char phone[12];
+	mem results[SEL_MAX];
+	int count = 0;
+
+	printf("请输入手机号:");
+	scanf("%11s", phone);
+	while(getchar() != '\n');
+
+	FILE* fp = fopen(mem_information, "rb");
+	if (fp == NULL)
+	{
+		perror("用户数据文件打开失败!");
+		return;
+	}
+
+	mem current;
+
+	while(fread(&current, sizeof(mem), 1, fp) && count < SEL_MAX)
+	{
+		if(current.state == 0 && strcmp(current.phone, phone) == 0)
+		{
+			results[count] = current;
+			count++;
+		}
+	}
+
+	if (count > 0)
+	{
+		printf("找到 %d 个符合要求的会员,他们的信息如下:\n", count);
+		for(int i = 0; i < count; i++)
+		{
+			mem_display(&results[i]);
+		}
+	}
+	else
+		printf("未找到该用户...");
+
+	fclose(fp);
 }

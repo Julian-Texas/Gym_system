@@ -78,7 +78,7 @@ void mem_reg(void)
 	fwrite(&reg,sizeof(reg),1,fp);
 	fclose(fp);
 
-	printf("\n会员注册成功!!!");
+	printf("\n会员注册成功!!!\n");
 }
 
 
